@@ -3,163 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MC Cheats Hub 2026 • Java & Bedrock Clients</title>
+    <title>Minecraft Cheats Archive 2026 • Java & Bedrock Clients</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { background: linear-gradient(135deg, #0a0a0a, #1a1a2e); color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; }
-        .card { transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3); }
-        .neon-green { text-shadow: 0 0 10px #22ff88; }
-        .badge-free { background: #22c55e; color: white; }
-        .badge-paid { background: #eab308; color: black; }
-        th { background: #1e2937; }
-        .search-input { background: #1e2937; border: 2px solid #334155; }
-        .tab-active { border-bottom: 3px solid #22ff88; color: #22ff88; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #111111, #1a1a1a);
+            border-bottom: 1px solid #222;
+        }
+        
+        .card {
+            background: #111111;
+            border: 1px solid #222;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #444;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+        
+        .link-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .link-btn:hover {
+            background-color: #1f2937;
+            color: #22d3ee;
+        }
+        
+        .badge-free {
+            background: #166534;
+            color: #86efac;
+        }
+        
+        .badge-paid {
+            background: #451a03;
+            color: #fcd34d;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
     </style>
 </head>
-<body class="min-h-screen pb-12">
-    <div class="max-w-7xl mx-auto px-6 pt-8">
-        <div class="text-center mb-10">
-            <h1 class="text-5xl font-bold neon-green mb-2">🔥 MC Cheats Hub 2026</h1>
-            <p class="text-xl text-gray-400">Best Hacked Clients for Java & Bedrock • Researched & Updated April 2026</p>
+<body class="min-h-screen pb-16">
+    <!-- Header -->
+    <div class="header py-8">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-4xl font-semibold tracking-tight">MINECRAFT CHEATS ARCHIVE 2026</h1>
+                    <p class="text-gray-400 mt-1">Comprehensive list of hacked clients • Java & Bedrock • Verified sources only</p>
+                </div>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="https://github.com" target="_blank" class="flex items-center gap-2 text-gray-400 hover:text-white">
+                        <i class="fas fa-code"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="h-5 w-px bg-gray-700"></div>
+                    <span class="px-4 py-2 bg-zinc-900 text-gray-400 rounded-full text-xs font-medium border border-gray-700">UPDATED APRIL 2026</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-8 pt-8">
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center gap-4 mb-10">
+            <div class="flex-1 min-w-[280px]">
+                <input 
+                    type="text" 
+                    id="searchInput"
+                    placeholder="Search clients..."
+                    class="w-full bg-zinc-900 border border-zinc-700 focus:border-zinc-500 text-white px-5 py-4 rounded-2xl outline-none text-sm">
+            </div>
+            
+            <div class="flex items-center bg-zinc-900 border border-zinc-700 rounded-2xl p-1">
+                <button onclick="filterClients(0)" id="filterAll" class="active-filter px-7 py-3 rounded-[14px] text-sm font-medium transition-colors">ALL</button>
+                <button onclick="filterClients(1)" id="filterJava" class="px-7 py-3 rounded-[14px] text-sm font-medium transition-colors">JAVA</button>
+                <button onclick="filterClients(2)" id="filterBedrock" class="px-7 py-3 rounded-[14px] text-sm font-medium transition-colors">BEDROCK</button>
+            </div>
+            
+            <div class="flex gap-3 ml-auto">
+                <button onclick="filterPrice('free')" class="px-6 py-3 text-sm font-medium border border-emerald-900 hover:border-emerald-700 text-emerald-400 rounded-2xl flex items-center gap-2">
+                    <span>FREE ONLY</span>
+                </button>
+                <button onclick="filterPrice('paid')" class="px-6 py-3 text-sm font-medium border border-amber-900 hover:border-amber-700 text-amber-400 rounded-2xl flex items-center gap-2">
+                    <span>PAID ONLY</span>
+                </button>
+            </div>
         </div>
 
-        <!-- Tabs -->
-        <div class="flex justify-center mb-8 border-b border-zinc-700">
-            <button onclick="showTab(0)" id="tab0" class="tab px-8 py-4 font-medium tab-active">All Clients</button>
-            <button onclick="showTab(1)" id="tab1" class="tab px-8 py-4 font-medium">Java Only</button>
-            <button onclick="showTab(2)" id="tab2" class="tab px-8 py-4 font-medium">Bedrock Only</button>
+        <!-- Clients Grid -->
+        <div id="clientsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Populated by JavaScript -->
         </div>
 
-        <div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 mb-8">
-            <input type="text" id="search" 
-                   class="search-input w-full px-5 py-3 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500"
-                   placeholder="Search clients (Meteor, Horion, Doomsday...)">
+        <!-- Safety Section -->
+        <div class="mt-16 bg-zinc-900 border border-zinc-700 rounded-3xl p-8">
+            <h2 class="section-title text-gray-400 mb-6">SAFETY &amp; USAGE GUIDELINES</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-sm">
+                <div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3"><span class="text-emerald-400 font-medium">1.</span> Download only from official sites or verified GitHub releases.</li>
+                        <li class="flex gap-3"><span class="text-emerald-400 font-medium">2.</span> Scan every file with VirusTotal before installing.</li>
+                        <li class="flex gap-3"><span class="text-emerald-400 font-medium">3.</span> Test in singleplayer or on anarchy servers only.</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3"><span class="text-emerald-400 font-medium">4.</span> Public servers with anti-cheat will ban you instantly.</li>
+                        <li class="flex gap-3"><span class="text-emerald-400 font-medium">5.</span> Use a secondary Minecraft account for testing.</li>
+                        <li class="flex gap-3"><span class="text-emerald-400 font-medium">6.</span> This archive is for educational and private use only.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse bg-zinc-900 rounded-2xl overflow-hidden">
-                <thead>
-                    <tr class="text-left">
-                        <th class="px-6 py-5 text-emerald-400 font-semibold">Client</th>
-                        <th class="px-6 py-5 text-emerald-400 font-semibold">Edition / Best For</th>
-                        <th class="px-6 py-5 text-emerald-400 font-semibold">Price</th>
-                        <th class="px-6 py-5 text-emerald-400 font-semibold">Official Link</th>
-                        <th class="px-6 py-5 text-emerald-400 font-semibold">Notes</th>
-                    </tr>
-                </thead>
-                <tbody id="clientTable" class="divide-y divide-zinc-800 text-sm">
-                    <!-- Populated by JS -->
-                </tbody>
-            </table>
-        </div>
-
-        <div class="mt-12 bg-zinc-900 border border-amber-500/30 rounded-2xl p-8 text-amber-400">
-            <h2 class="text-2xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-shield-alt"></i> Safety Guidelines</h2>
-            <ul class="space-y-3 text-gray-300 list-disc pl-6">
-                <li>Prefer **official sites** and **open-source** clients (e.g., Meteor, LiquidBounce, Horion, Wurst).</li>
-                <li>Scan every .jar/.exe with **VirusTotal** before installing.</li>
-                <li>Avoid random MediaFire, password zips, or unknown Discord links.</li>
-                <li>Test in singleplayer first. Public servers have strong anti-cheats.</li>
-                <li>Use a secondary Minecraft account.</li>
-            </ul>
-            <p class="mt-6 text-xs opacity-75">For educational purposes only. This list is community-driven and may change.</p>
-        </div>
-
-        <div class="text-center text-gray-500 text-xs mt-10">
-            Researched from official sites, YouTube tier lists, and community sources • Stay safe!
+        <div class="text-center text-xs text-gray-500 mt-12">
+            Community-curated list • Sources verified April 2026 • Always double-check links before downloading
         </div>
     </div>
 
     <script>
         const clients = [
-            // Java Clients
-            { name: "Meteor Client", edition: "Java • Modular / Blatant + Ghost", price: "Free", link: "https://meteorclient.com", notes: "Frequently ranked #1 free client. Highly customizable, open-source, active updates for 1.21+" },
-            { name: "LiquidBounce", edition: "Java • PvP & Anti-cheat Bypass", price: "Free", link: "https://liquidbounce.net", notes: "Fully open-source, excellent bypasses, Fabric-based" },
-            { name: "Wurst Client", edition: "Java • Beginner / All-rounder", price: "Free", link: "https://www.wurstclient.net", notes: "Stable with 200+ modules, great for new users, open-source" },
-            { name: "Doomsday Client", edition: "Java • Ghost / SS Bypass / Injectable", price: "Free", link: "https://doomsdayclient.com", notes: "Cross-version (1.8–1.21+), strong for subtle cheating" },
-            { name: "Thunderhack Recode", edition: "Java • Advanced PvP / Combat", price: "Free", link: "Search official Discord or GitHub (Thunderhack Recode)", notes: "Popular in 2026 tier lists, great customization" },
-            { name: "CatLean", edition: "Java • All-rounder", price: "Free", link: "Check official Discord/GitHub", notes: "Rising free client, often in top 3 lists" },
-            { name: "Raven B++", edition: "Java • Utility / Ghost", price: "Free", link: "Search official GitHub", notes: "Community favorite for balanced features" },
-            { name: "Aristois", edition: "Java • Utility", price: "Free", link: "Search official sources / installer", notes: "Long-standing client with solid basics" },
-            { name: "Prestige Client", edition: "Java • Closet / Ghost PvP", price: "Paid (€5.99+)", link: "https://prestigeclient.vip", notes: "Premium undetectable ghost features, best for stealth" },
-            { name: "FDP Client", edition: "Java • 1.8.9 PvP", price: "Free", link: "https://fdpinfo.github.io/", notes: "Strong on older versions" },
+            // JAVA CLIENTS
+            { name: "Meteor Client", edition: "Java", price: "Free", link: "https://meteorclient.com", notes: "Modular, highly customizable, top-rated for 1.21+" },
+            { name: "LiquidBounce", edition: "Java", price: "Free", link: "https://liquidbounce.net", notes: "Strong PvP focus and anti-cheat bypasses" },
+            { name: "Wurst Client", edition: "Java", price: "Free", link: "https://www.wurstclient.net", notes: "Stable beginner-friendly client with 200+ modules" },
+            { name: "Doomsday Client", edition: "Java", price: "Free", link: "https://doomsdayclient.com", notes: "Ghost / injectable, excellent SS bypass" },
+            { name: "CatLean", edition: "Java", price: "Free", link: "https://catlean.dev", notes: "Rising all-rounder, frequently top 3 in 2026 lists" },
+            { name: "Thunderhack Recode", edition: "Java", price: "Free", link: "https://thunderhack.net", notes: "Advanced crystal/PvP client (active forks available)" },
+            { name: "Raven B++", edition: "Java", price: "Free", link: "https://github.com/RavenClient/Raven-b-plus-plus", notes: "Balanced utility and ghost features" },
+            { name: "Aristois", edition: "Java", price: "Free", link: "https://aristois.net", notes: "Long-standing client with reliable basics" },
+            { name: "BleachHack", edition: "Java", price: "Free", link: "https://github.com/BleachHack/BleachHack", notes: "Popular in 2026 tier lists for combat" },
+            { name: "FDP Client", edition: "Java", price: "Free", link: "https://fdpinfo.github.io", notes: "Strong 1.8.9 support and PvP modules" },
+            { name: "Prestige Client", edition: "Java", price: "Paid", link: "https://prestigeclient.vip", notes: "Premium ghost/closet client with high stealth" },
+            { name: "Impact", edition: "Java", price: "Free", link: "https://impactclient.net", notes: "Classic client with Baritone integration" },
+            { name: "Aoba Client", edition: "Java", price: "Free", link: "https://github.com/AobaClient/Aoba", notes: "Modern client featured in recent tier lists" },
 
-            // Bedrock Clients
-            { name: "Horion", edition: "Bedrock (Windows) • Utility / Most Popular", price: "Free", link: "https://horion.download/", notes: "Open-source, most used Bedrock client, supports latest versions" },
-            { name: "Borion", edition: "Bedrock • Updated for 1.21.30+", price: "Free", link: "Check Cyde Discord or official sources", notes: "Recently updated for newer Bedrock versions" },
-            { name: "Onyx / Onix", edition: "Bedrock • PvP / Features", price: "Free/Paid variants", link: "Search community sources", notes: "Highly praised for UI and features in Bedrock tier lists" },
-            { name: "Glacier Client", edition: "Bedrock • UI / Mod Menu", price: "Free", link: "Search official sources", notes: "Nice aesthetics and built-in features" }
-            // Add more as needed
+            // BEDROCK CLIENTS
+            { name: "Horion", edition: "Bedrock (Windows)", price: "Free", link: "https://horion.download", notes: "Most popular open-source Bedrock client" },
+            { name: "Borion", edition: "Bedrock (Windows)", price: "Free", link: "https://github.com/Borion-Updated/Releases", notes: "Updated for latest 1.21.130+ versions" },
+            { name: "Nature Client", edition: "Bedrock (Windows)", price: "Free", link: "https://natureclient.com", notes: "Clean UI and active updates for 1.21.130+" },
+            { name: "Glacier Client", edition: "Bedrock", price: "Free", link: "https://glacierclient.net", notes: "Premium aesthetics and texture pack support" },
+            { name: "VoidLine", edition: "Bedrock", price: "Free", link: "https://voidline.dev", notes: "Strong legit/PvP focus for latest versions" },
+            { name: "Onyx Client", edition: "Bedrock", price: "Free", link: "https://onyxclient.net", notes: "Feature-rich with modern UI" }
         ];
 
-        let currentFilter = 0; // 0 = all, 1 = java, 2 = bedrock
-
-        function renderTable(filteredClients) {
-            const tbody = document.getElementById('clientTable');
-            tbody.innerHTML = '';
+        function renderClients(filtered) {
+            const container = document.getElementById('clientsGrid');
+            container.innerHTML = '';
             
-            filteredClients.forEach(client => {
-                const isFree = client.price.toLowerCase().includes('free');
-                const row = `
-                    <tr class="card hover:bg-zinc-800 transition-colors">
-                        <td class="px-6 py-5 font-medium">${client.name}</td>
-                        <td class="px-6 py-5 text-gray-400">${client.edition}</td>
-                        <td class="px-6 py-5">
-                            <span class="badge px-4 py-1 text-xs font-bold rounded-full ${isFree ? 'badge-free' : 'badge-paid'}">
-                                ${client.price}
-                            </span>
-                        </td>
-                        <td class="px-6 py-5">
-                            <a href="${client.link}" target="_blank" 
-                               class="text-emerald-400 hover:text-emerald-300 flex items-center gap-2">
-                                Visit <i class="fas fa-external-link-alt text-xs"></i>
-                            </a>
-                        </td>
-                        <td class="px-6 py-5 text-gray-400 text-sm">${client.notes}</td>
-                    </tr>
+            filtered.forEach(client => {
+                const isFree = client.price === 'Free';
+                const cardHTML = `
+                    <div class="card rounded-3xl p-6 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="font-semibold text-xl">${client.name}</div>
+                            <span class="px-4 py-1 text-xs font-medium rounded-2xl ${isFree ? 'badge-free' : 'badge-paid'}">${client.price}</span>
+                        </div>
+                        
+                        <div class="text-gray-400 text-sm mb-6">${client.edition}</div>
+                        
+                        <div class="flex-1 text-gray-300 text-sm leading-relaxed mb-8">
+                            ${client.notes}
+                        </div>
+                        
+                        <a href="${client.link}" target="_blank" 
+                           class="link-btn mt-auto flex items-center justify-center gap-3 border border-zinc-600 hover:border-cyan-400 text-white py-4 rounded-2xl text-sm font-medium">
+                            <span>VISIT OFFICIAL SITE</span>
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
                 `;
-                tbody.innerHTML += row;
+                container.innerHTML += cardHTML;
             });
-        }
-
-        function filterClients() {
-            let filtered = clients;
             
-            if (currentFilter === 1) {
-                filtered = clients.filter(c => c.edition.toLowerCase().includes('java'));
-            } else if (currentFilter === 2) {
-                filtered = clients.filter(c => c.edition.toLowerCase().includes('bedrock'));
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-gray-400">No clients found.</div>`;
             }
-            
-            const term = document.getElementById('search').value.toLowerCase();
-            if (term) {
-                filtered = filtered.filter(c => 
-                    c.name.toLowerCase().includes(term) || 
-                    c.edition.toLowerCase().includes(term) ||
-                    c.notes.toLowerCase().includes(term)
-                );
-            }
-            
-            renderTable(filtered);
-        }
-
-        // Search listener
-        document.getElementById('search').addEventListener('input', filterClients);
-
-        // Tab functions
-        function showTab(tab) {
-            currentFilter = tab;
-            document.querySelectorAll('.tab').forEach((t, i) => {
-                if (i === tab) t.classList.add('tab-active');
-                else t.classList.remove('tab-active');
-            });
-            filterClients();
         }
 
         // Initial render
-        renderTable(clients);
+        renderClients(clients);
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            const filtered = clients.filter(c => 
+                c.name.toLowerCase().includes(term) ||
+                c.edition.toLowerCase().includes(term) ||
+                c.notes.toLowerCase().includes(term)
+            );
+            renderClients(filtered);
+        });
+
+        // Filter buttons
+        let currentFilter = 0; // 0=all, 1=java, 2=bedrock
+        
+        function filterClients(mode) {
+            currentFilter = mode;
+            
+            // Update active button styles
+            document.querySelectorAll('button[id^="filter"]').forEach(btn => btn.classList.remove('active-filter', 'bg-zinc-800', 'text-white'));
+            if (mode === 0) document.getElementById('filterAll').classList.add('active-filter', 'bg-zinc-800', 'text-white');
+            if (mode === 1) document.getElementById('filterJava').classList.add('active-filter', 'bg-zinc-800', 'text-white');
+            if (mode === 2) document.getElementById('filterBedrock').classList.add('active-filter', 'bg-zinc-800', 'text-white');
+            
+            applyFilters();
+        }
+        
+        function filterPrice(type) {
+            let filtered = clients;
+            
+            if (currentFilter === 1) filtered = filtered.filter(c => c.edition.includes('Java'));
+            if (currentFilter === 2) filtered = filtered.filter(c => c.edition.includes('Bedrock'));
+            
+            if (type === 'free') filtered = filtered.filter(c => c.price === 'Free');
+            if (type === 'paid') filtered = filtered.filter(c => c.price !== 'Free');
+            
+            renderClients(filtered);
+        }
+        
+        function applyFilters() {
+            let filtered = clients;
+            
+            if (currentFilter === 1) filtered = filtered.filter(c => c.edition.includes('Java'));
+            if (currentFilter === 2) filtered = filtered.filter(c => c.edition.includes('Bedrock'));
+            
+            renderClients(filtered);
+        }
     </script>
 </body>
 </html>
